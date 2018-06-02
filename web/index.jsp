@@ -17,5 +17,7 @@
     密码<input type="text" name="user_password"><br>
     <input type="submit" value="添加">
   </form>
+  <a href="/view/excel">excel</a>
+  <a href="/view/pdf">pdf</a>
   </body>
 </html>

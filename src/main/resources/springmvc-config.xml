@@ -31,7 +31,6 @@
         2.允许使用“/”做整体映射
     -->
     <mvc:default-servlet-handler/>
-
     <!--C.添加对静态资源的访问==自行修改自己静态资源文件目录-->
     <!--<mvc:resources location="/js/" mapping="/js/**"/>-->
     <!--<mvc:resources location="/images/" mapping="/images/**"/>-->
@@ -58,6 +57,9 @@
         <property name="defaultEncoding" value="utf-8"/>
         <property name="resolveLazily" value="true"/>
     </bean>
+
+    <!-- 通过order属性来定义视图解析器的优先级，order的值越小优先级越低 -->
+    <bean  class="org.springframework.web.servlet.view.BeanNameViewResolver"></bean>
 
 
     <!-- 视图解析器解析jsp解析，默认使用jstl标签，classpath下的得有jstl的包-->

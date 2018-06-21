@@ -32,9 +32,9 @@
     -->
     <mvc:default-servlet-handler/>
     <!--C.添加对静态资源的访问==自行修改自己静态资源文件目录-->
-    <!--<mvc:resources location="/js/" mapping="/js/**"/>-->
+    <mvc:resources location="/js/" mapping="/js/**"/>
     <!--<mvc:resources location="/images/" mapping="/images/**"/>-->
-    <!--<mvc:resources location="/css/" mapping="/css/**"/>-->
+    <mvc:resources location="/css/" mapping="/css/**"/>
     <!--<mvc:resources location="/student/picture/" mapping="/student/picture/**"/>-->
 
     <!--拦截器==自行添加-->

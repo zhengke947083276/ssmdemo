@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.com.dao.TblShopperMapper">
+  <resultMap id="BaseResultMap" type="org.com.entity.TblShopper">
+    <id column="shopper_Id" jdbcType="INTEGER" property="shopperId" />
+    <result column="shopper_telnum" jdbcType="CHAR" property="shopperTelnum" />
+    <result column="shopper_password" jdbcType="CHAR" property="shopperPassword" />
+    <result column="shopper_sex" jdbcType="BIT" property="shopperSex" />
+    <result column="shopper_age" jdbcType="INTEGER" property="shopperAge" />
+    <result column="shopper_job" jdbcType="CHAR" property="shopperJob" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    shopper_Id, shopper_telnum, shopper_password, shopper_sex, shopper_age, shopper_job
+  </sql>
+  <select id="selectByExample" parameterType="org.com.entity.TblShopperExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_shopper
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_shopper
+    where shopper_Id = #{shopperId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tbl_shopper
+    where shopper_Id = #{shopperId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.com.entity.TblShopperExample">
+    delete from tbl_shopper
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.com.entity.TblShopper">
+    insert into tbl_shopper (shopper_Id, shopper_telnum, shopper_password, 
+      shopper_sex, shopper_age, shopper_job
+      )
+    values (#{shopperId,jdbcType=INTEGER}, #{shopperTelnum,jdbcType=CHAR}, #{shopperPassword,jdbcType=CHAR}, 
+      #{shopperSex,jdbcType=BIT}, #{shopperAge,jdbcType=INTEGER}, #{shopperJob,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.com.entity.TblShopper">
+    insert into tbl_shopper
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="shopperId != null">
+        shopper_Id,
+      </if>
+      <if test="shopperTelnum != null">
+        shopper_telnum,
+      </if>
+      <if test="shopperPassword != null">
+        shopper_password,
+      </if>
+      <if test="shopperSex != null">
+        shopper_sex,
+      </if>
+      <if test="shopperAge != null">
+        shopper_age,
+      </if>
+      <if test="shopperJob != null">
+        shopper_job,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="shopperId != null">
+        #{shopperId,jdbcType=INTEGER},
+      </if>
+      <if test="shopperTelnum != null">
+        #{shopperTelnum,jdbcType=CHAR},
+      </if>
+      <if test="shopperPassword != null">
+        #{shopperPassword,jdbcType=CHAR},
+      </if>
+      <if test="shopperSex != null">
+        #{shopperSex,jdbcType=BIT},
+      </if>
+      <if test="shopperAge != null">
+        #{shopperAge,jdbcType=INTEGER},
+      </if>
+      <if test="shopperJob != null">
+        #{shopperJob,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.com.entity.TblShopperExample" resultType="java.lang.Long">
+    select count(*) from tbl_shopper
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tbl_shopper
+    <set>
+      <if test="record.shopperId != null">
+        shopper_Id = #{record.shopperId,jdbcType=INTEGER},
+      </if>
+      <if test="record.shopperTelnum != null">
+        shopper_telnum = #{record.shopperTelnum,jdbcType=CHAR},
+      </if>
+      <if test="record.shopperPassword != null">
+        shopper_password = #{record.shopperPassword,jdbcType=CHAR},
+      </if>
+      <if test="record.shopperSex != null">
+        shopper_sex = #{record.shopperSex,jdbcType=BIT},
+      </if>
+      <if test="record.shopperAge != null">
+        shopper_age = #{record.shopperAge,jdbcType=INTEGER},
+      </if>
+      <if test="record.shopperJob != null">
+        shopper_job = #{record.shopperJob,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tbl_shopper
+    set shopper_Id = #{record.shopperId,jdbcType=INTEGER},
+      shopper_telnum = #{record.shopperTelnum,jdbcType=CHAR},
+      shopper_password = #{record.shopperPassword,jdbcType=CHAR},
+      shopper_sex = #{record.shopperSex,jdbcType=BIT},
+      shopper_age = #{record.shopperAge,jdbcType=INTEGER},
+      shopper_job = #{record.shopperJob,jdbcType=CHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.com.entity.TblShopper">
+    update tbl_shopper
+    <set>
+      <if test="shopperTelnum != null">
+        shopper_telnum = #{shopperTelnum,jdbcType=CHAR},
+      </if>
+      <if test="shopperPassword != null">
+        shopper_password = #{shopperPassword,jdbcType=CHAR},
+      </if>
+      <if test="shopperSex != null">
+        shopper_sex = #{shopperSex,jdbcType=BIT},
+      </if>
+      <if test="shopperAge != null">
+        shopper_age = #{shopperAge,jdbcType=INTEGER},
+      </if>
+      <if test="shopperJob != null">
+        shopper_job = #{shopperJob,jdbcType=CHAR},
+      </if>
+    </set>
+    where shopper_Id = #{shopperId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.com.entity.TblShopper">
+    update tbl_shopper
+    set shopper_telnum = #{shopperTelnum,jdbcType=CHAR},
+      shopper_password = #{shopperPassword,jdbcType=CHAR},
+      shopper_sex = #{shopperSex,jdbcType=BIT},
+      shopper_age = #{shopperAge,jdbcType=INTEGER},
+      shopper_job = #{shopperJob,jdbcType=CHAR}
+    where shopper_Id = #{shopperId,jdbcType=INTEGER}
+  </update>
+</mapper>

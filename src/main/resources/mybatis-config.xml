@@ -4,8 +4,8 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
-    <!--<plugins>-->
-        <!--&lt;!&ndash;分页插件&ndash;&gt;-->
-        <!--<plugin interceptor="com.github.pagehelper.PageInterceptor"></plugin>-->
-    <!--</plugins>-->
+    <plugins>
+        <!--分页插件-->
+        <plugin interceptor="com.github.pagehelper.PageInterceptor"></plugin>
+    </plugins>
 </configuration>

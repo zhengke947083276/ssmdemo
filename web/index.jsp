@@ -12,12 +12,6 @@
   </head>
   <body>
   <h1>添加</h1>
-  <form action="/user/add" method="post">
-    名字<input type="text" name="user_name"><br>
-    密码<input type="text" name="user_password"><br>
-    <input type="submit" value="添加">
-  </form>
-  <a href="/view/excel">excel</a>
-  <a href="/view/pdf">pdf</a>
+  <a href="${pageContext.request.contextPath}/order/selectPage">购物车</a>
   </body>
 </html>

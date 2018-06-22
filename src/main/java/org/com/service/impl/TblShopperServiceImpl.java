@@ -26,12 +26,15 @@ public class TblShopperServiceImpl implements TblShopperService {
         criteria.andShopperTelnumEqualTo(shopperTelnum);
         criteria.andShopperPasswordEqualTo(shopperPassword);
         List<TblShopper> tblShoppers = tblShopperMapper.selectByExample(tblShopperExample);
-        return tblShoppers.get(0);
+        if (tblShoppers!=null && tblShoppers.size()!=0){
+           return tblShoppers.get(0);
+        }
+        return null;
     }
 
     @Override
     public int update(TblShopper shopper) {
-        int i = tblShopperMapper.updateByPrimaryKey(shopper);
+        int i = tblShopperMapper.updateByPrimaryKeySelective(shopper);
         return i;
     }
 }

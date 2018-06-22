@@ -20,4 +20,5 @@ public interface TblShopperService {
      * 修改个人信息
      */
     public int update(TblShopper shopper);
+
 }

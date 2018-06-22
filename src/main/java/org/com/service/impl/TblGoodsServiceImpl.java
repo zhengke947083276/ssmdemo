@@ -33,7 +33,7 @@ public class TblGoodsServiceImpl implements TblGoodsService {
     public List<TblGoods> selectByName(String goodsName) {
         TblGoodsExample tblGoodsExample = new TblGoodsExample();
         TblGoodsExample.Criteria criteria = tblGoodsExample.createCriteria();
-        criteria.andGoodsNameLike("%goodsName%");
+        criteria.andGoodsNameLike("%"+goodsName+"%");
         return tblGoodsMapper.selectByExample(tblGoodsExample);
     }
 

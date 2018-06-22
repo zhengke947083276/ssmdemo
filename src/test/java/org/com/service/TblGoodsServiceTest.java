@@ -28,9 +28,20 @@ public class TblGoodsServiceTest {
 
     @Test
     public void selectByName() {
+        List<TblGoods> tblGoods = tblGoodsService.selectByName("洗面奶");
+        for (TblGoods tblGood:tblGoods
+             ) {
+            System.out.println(tblGood.getGoodsName()+"3333333333");
+        }
     }
 
     @Test
     public void selectByType() {
+        List<TblGoods> tblGoods = tblGoodsService.selectByType(1);
+        for (TblGoods tblGood:tblGoods
+             ) {
+            System.out.println(tblGood.getGoodsName()+"4444444444");
+        }
+
     }
 }

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: 94708
@@ -6,12 +7,4 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-  <head>
-    <title>首页</title>
-  </head>
-  <body>
-  <h1>添加</h1>
-  <a href="${pageContext.request.contextPath}/order/selectPage">购物车</a>
-  </body>
-</html>
+<c:redirect url="/tblGoods/selectAll"/>

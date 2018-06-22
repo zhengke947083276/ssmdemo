@@ -38,16 +38,16 @@
     <!--<mvc:resources location="/student/picture/" mapping="/student/picture/**"/>-->
 
     <!--拦截器==自行添加-->
-    <!--<mvc:interceptors>-->
-        <!--<mvc:interceptor>-->
-            <!--&lt;!&ndash;拦截所有&ndash;&gt;-->
-            <!--<mvc:mapping path="/**"/>-->
-            <!--&lt;!&ndash;不进行拦截&ndash;&gt;-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!--拦截所有-->
+            <mvc:mapping path="/order/*"/>
+            <!--不进行拦截-->
             <!--<mvc:exclude-mapping path="/adm/*"/>-->
             <!--<mvc:exclude-mapping path="/"/>-->
-            <!--<bean class="org.com.filter.F01_Admin"/>-->
-        <!--</mvc:interceptor>-->
-    <!--</mvc:interceptors>-->
+            <bean class="org.com.filter.F0_filter"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 
 
     <!--文件-->

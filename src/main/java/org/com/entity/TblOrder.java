@@ -7,7 +7,17 @@ public class TblOrder {
 
     private Integer shopperId;
 
+
     private Integer goodsId;
+    private TblGoods tblGoods;
+
+    public TblGoods getTblGoods() {
+        return tblGoods;
+    }
+
+    public void setTblGoods(TblGoods tblGoods) {
+        this.tblGoods = tblGoods;
+    }
 
     private Integer orderState;
 
@@ -61,5 +71,17 @@ public class TblOrder {
 
     public void setOrderTime(Date orderTime) {
         this.orderTime = orderTime;
+    }
+
+    @Override
+    public String toString() {
+        return "TblOrder{" +
+                "orderId=" + orderId +
+                ", shopperId=" + shopperId +
+                ", goodsId=" + goodsId +
+                ", orderState=" + orderState +
+                ", goodsNumber=" + goodsNumber +
+                ", orderTime=" + orderTime +
+                '}';
     }
 }

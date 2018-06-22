@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.com.dao.TblAddressMapper">
+  <resultMap id="BaseResultMap" type="org.com.entity.TblAddress">
+    <id column="address_id" jdbcType="INTEGER" property="addressId" />
+    <result column="address_name" jdbcType="CHAR" property="addressName" />
+    <result column="shopper_Id" jdbcType="INTEGER" property="shopperId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    address_id, address_name, shopper_Id
+  </sql>
+  <select id="selectByExample" parameterType="org.com.entity.TblAddressExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_address
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_address
+    where address_id = #{addressId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tbl_address
+    where address_id = #{addressId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.com.entity.TblAddressExample">
+    delete from tbl_address
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.com.entity.TblAddress">
+    insert into tbl_address (address_id, address_name, shopper_Id
+      )
+    values (#{addressId,jdbcType=INTEGER}, #{addressName,jdbcType=CHAR}, #{shopperId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.com.entity.TblAddress">
+    insert into tbl_address
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="addressId != null">
+        address_id,
+      </if>
+      <if test="addressName != null">
+        address_name,
+      </if>
+      <if test="shopperId != null">
+        shopper_Id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="addressId != null">
+        #{addressId,jdbcType=INTEGER},
+      </if>
+      <if test="addressName != null">
+        #{addressName,jdbcType=CHAR},
+      </if>
+      <if test="shopperId != null">
+        #{shopperId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.com.entity.TblAddressExample" resultType="java.lang.Long">
+    select count(*) from tbl_address
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tbl_address
+    <set>
+      <if test="record.addressId != null">
+        address_id = #{record.addressId,jdbcType=INTEGER},
+      </if>
+      <if test="record.addressName != null">
+        address_name = #{record.addressName,jdbcType=CHAR},
+      </if>
+      <if test="record.shopperId != null">
+        shopper_Id = #{record.shopperId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tbl_address
+    set address_id = #{record.addressId,jdbcType=INTEGER},
+      address_name = #{record.addressName,jdbcType=CHAR},
+      shopper_Id = #{record.shopperId,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.com.entity.TblAddress">
+    update tbl_address
+    <set>
+      <if test="addressName != null">
+        address_name = #{addressName,jdbcType=CHAR},
+      </if>
+      <if test="shopperId != null">
+        shopper_Id = #{shopperId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where address_id = #{addressId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.com.entity.TblAddress">
+    update tbl_address
+    set address_name = #{addressName,jdbcType=CHAR},
+      shopper_Id = #{shopperId,jdbcType=INTEGER}
+    where address_id = #{addressId,jdbcType=INTEGER}
+  </update>
+</mapper>
